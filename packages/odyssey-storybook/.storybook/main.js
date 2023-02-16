@@ -23,7 +23,17 @@ module.exports = {
     "@storybook/addon-a11y",
     "@pxblue/storybook-rtl-addon",
   ],
-  stories: ["../src/**/*.stories.@(js|jsx|ts|tsx|mdx)"],
+  core: {
+    disableTelemetry: true,
+  },
+  docs: {
+    autodocs: true,
+  },
+  framework: {
+    name: "@storybook/react-webpack5",
+    options: {},
+  },
+  stories: ["../src/**/*.@(mdx|stories.@(js|jsx|ts|tsx))"],
   typescript: {
     check: false,
     checkOptions: {},
@@ -47,17 +57,21 @@ module.exports = {
     },
   }),
 };
-
 function buildRules(rules) {
   return rules.reduce((memo, rule) => {
     const testString = rule.test?.toString();
     const isStyleLoader = /s?css/.test(testString);
     const isScriptLoader = /(jsx?|tsx?)/.test(testString);
 
-    if (isStyleLoader) return memo;
+    if (isStyleLoader) {
+      return memo;
+    }
 
     if (isScriptLoader) {
-      return memo.concat({ ...rule, exclude: rule.exclude });
+      return memo.concat({
+        ...rule,
+        exclude: rule.exclude,
+      });
     }
 
     return memo.concat(rule);

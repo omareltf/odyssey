@@ -11,13 +11,13 @@
  */
 
 import { Banner } from "@okta/odyssey-react-mui";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryObj } from "@storybook/react";
 
 import { MuiThemeDecorator } from "../../../../.storybook/components";
 import BannerMdx from "./Banner.mdx";
 
-const storybookMeta: ComponentMeta<typeof Banner> = {
-  title: `MUI Components/Alerts/Banner`,
+const storybookMeta: Meta<typeof Banner> = {
+  // title: `MUI Components/Alerts/Banner`,
   component: Banner,
   parameters: {
     docs: {
@@ -53,38 +53,44 @@ const storybookMeta: ComponentMeta<typeof Banner> = {
 
 export default storybookMeta;
 
-const Template: ComponentStory<typeof Banner> = (args) => {
-  return <Banner {...args}></Banner>;
+type Story = StoryObj<typeof Banner>;
+
+export const Info: Story = {
+  args: {
+    role: "status",
+    severity: "info",
+  },
 };
 
-export const Info = Template.bind({});
-Info.args = {};
-
-export const Error = Template.bind({});
-Error.args = {
-  role: "status",
-  severity: "error",
-  text: "Hangar 18 has been compromised.",
+export const Error: Story = {
+  args: {
+    role: "status",
+    severity: "error",
+    text: "Hangar 18 has been compromised.",
+  },
 };
 
-export const Warning = Template.bind({});
-Warning.args = {
-  role: "status",
-  severity: "warning",
-  text: "Severe solar winds detected. Local system flights may be delayed.",
+export const Warning: Story = {
+  args: {
+    role: "status",
+    severity: "warning",
+    text: "Severe solar winds detected. Local system flights may be delayed.",
+  },
 };
 
-export const WithLink = Template.bind({});
-WithLink.args = {
-  linkText: "View report",
-  linkUrl: "#anchor",
-  role: "status",
-  severity: "error",
-  text: "Hangar 18 has been compromised.",
+export const WithLink: Story = {
+  args: {
+    linkText: "View report",
+    linkUrl: "#anchor",
+    role: "status",
+    severity: "error",
+    text: "Hangar 18 has been compromised.",
+  },
 };
 
-export const Dismissible = Template.bind({});
-Dismissible.args = {
-  role: "status",
-  severity: "warning",
+export const Dismissible: Story = {
+  args: {
+    role: "status",
+    severity: "warning",
+  },
 };

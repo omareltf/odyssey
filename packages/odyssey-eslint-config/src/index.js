@@ -84,5 +84,11 @@ module.exports = {
         ],
       },
     },
+    {
+      files: ["stories.jsx", "stories.tsx"],
+      rules: {
+        "react-hooks/rules-of-hooks": "off",
+      },
+    },
   ],
 };
